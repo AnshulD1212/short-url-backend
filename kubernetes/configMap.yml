@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: creators-connect-configmap
+  labels:
+    app: creators-connect
+data:
+  PORT: '4000'
+  DATABASE_HOST: localhost
+  DATABASE_PORT: '5432'
+  DATABASE_USER: anshuldharmadhikari
+  DATABASE_PASSWORD: anshuldharmadhikari
+  DATABASE_NAME: creators-connect

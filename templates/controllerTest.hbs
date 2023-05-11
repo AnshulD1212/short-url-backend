@@ -1,0 +1,81 @@
+import { expressAPI } from '../../../app';
+import supertest from 'supertest';
+import { HttpStatusCode } from 'axios';
+
+import { get{{titleCase name}}ById, get{{titleCase name}}s, create{{titleCase name}}, update{{titleCase name}}ById, delete{{titleCase name}}ById } from '../services/{{name}}.service';
+import { mock{{titleCase name}}s } from '../../__mocks__/{{name}}.mock';
+
+jest.mock('../services/{{name}}.service');
+
+const app = expressAPI();
+const request = supertest(app);
+
+describe('get all {{name}}s', () => {
+  it('should return all {{name}}s', async () => {
+    (get{{titleCase name}}s as jest.Mock).mockResolvedValue(mock{{titleCase name}}s);
+    return request
+      .get('/{{name}}')
+      .expect(HttpStatusCode.Ok)
+      .expect(({ body }) => {
+        expect(body).toHaveLength(2);
+        expect(body).toMatchObject(mock{{titleCase name}}s);
+      });
+  });
+});
+
+describe('get a {{name}}', () => {
+  it('should return a {{name}}', async () => {
+    (get{{titleCase name}}ById as jest.Mock).mockResolvedValue(mock{{titleCase name}}s[0]);
+    return request
+      .get('/{{name}}/1')
+      .expect(HttpStatusCode.Ok)
+      .expect(({ body }) => {
+        expect(body).toMatchObject(mock{{titleCase name}}s[0]);
+      });
+  });
+  it('should return a 404 if {{name}} not found', async () => {
+    (get{{titleCase name}}ById as jest.Mock).mockResolvedValue(undefined);
+    return request
+      .get('/{{name}}/3')
+      .expect(HttpStatusCode.NotFound);
+  });
+});
+
+describe('create a {{name}}', () => {
+  it('should create a {{name}}', async () => {
+    (create{{titleCase name}} as jest.Mock).mockResolvedValue(mock{{titleCase name}}s[0]);
+    return request
+      .post('/{{name}}')
+      .send(// TODO: add body)
+      .expect(HttpStatusCode.Created)
+      .expect(({ body }) => {
+        expect(body).toMatchObject(mock{{titleCase name}}s[0]);
+      });
+  });
+});
+
+describe('update a {{name}}', () => {
+  it('should update a {{name}} by id', async () => {
+    const mockUpdated{{titleCase name}} = // TODO: add updated {{name}} mock here
+    (update{{titleCase name}}ById as jest.Mock).mockResolvedValue(mockUpdated{{titleCase name}});
+    return request
+      .patch('/{{name}}/1')
+      .send(// TODO: add body)
+      .expect(HttpStatusCode.Ok)
+      .expect(({ body }) => {
+        expect(body).toMatchObject(mockUpdated{{titleCase name}});
+      });
+  });
+});
+
+describe('delete a {{name}}', () => {
+  it('should delete a {{name}}', async () => {
+    (delete{{titleCase name}}ById as jest.Mock).mockResolvedValue('{{titleCase name}} with id 1 deleted');
+    return request
+      .delete('/{{name}}/1')
+      .expect(HttpStatusCode.Ok)
+      .expect(({ body }) => {
+        expect(body).toEqual('{{titleCase name}} with id 1 deleted');
+      });
+  });
+});

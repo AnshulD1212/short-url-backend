@@ -1,0 +1,44 @@
+import { {{titleCase name}}, {{titleCase name}}Body } from '../../types/{{name}}';
+import { get{{titleCase name}}ById, get{{titleCase name}}s, create{{titleCase name}}, update{{titleCase name}}ById, delete{{titleCase name}}ById } from './{{name}}.service';
+
+describe('{{name}} services', () => {
+  describe('get all {{name}}s', () => {
+    it('should return all {{name}}s', async () => {
+     // const {{name}}s = await get{{titleCase name}}s();
+     // expect({{name}}s).toMatchObject(mock{{titleCase name}}s);
+    });
+  });
+
+  describe('get {{name}} by id', () => {
+    it('should return a {{name}}', async () => {
+      const id = 1;
+      // const {{name}} = await get{{titleCase name}}ById(id);
+     // expect({{name}}).toMatchObject(mock{{titleCase name}}s[0]);
+    });
+  });
+
+  describe('create {{name}}', () => {
+    it('should create a {{name}}', async () => {
+      const data: {{titleCase name}}Body = {};
+      // const {{name}} = await create{{titleCase name}}(data);
+     // expect({{name}}).toMatchObject(mock{{titleCase name}}s[0]);
+    });
+  });
+
+  describe('update {{name}} by id', () => {
+    it('should update a {{name}} by id', async () => {
+      const id = 1;
+      const data: Partial<{{titleCase name}}Body> = {};
+      // const {{name}} = await update{{titleCase name}}ById(id, data);
+     // expect({{name}}).toMatchObject(mock{{titleCase name}}s[0]);
+    });
+  });
+
+  describe('delete {{name}} by id', () => {
+    it('should delete a {{name}} by id', async () => {
+      const id = 1;
+      // const response = await delete{{titleCase name}}ById(id);
+     // expect(response).toMatchObject(`{{titleCase name}} with id ${id} deleted);
+    });
+  });
+});

@@ -1,0 +1,8 @@
+version: '3'
+services:
+  backend:
+    container_name: creators-connect-backend
+    image: 'creators-connect:1.0'
+    build: .
+    ports:
+      - '4000:4000'

@@ -1,0 +1,64 @@
+import { Request, Response } from 'express';
+import { HttpStatusCode } from 'axios';
+import { logger } from '../../../helpers/logger';
+import { get{{titleCase name}}ById, get{{titleCase name}}s, create{{titleCase name}}, update{{titleCase name}}ById, delete{{titleCase name}}ById } from '../services/{{name}}.service';
+
+export const get{{titleCase name}}sController = async (req: Request, res: Response) => {
+  try {
+    const {{name}}s = await get{{titleCase name}}s();
+    return res.status(HttpStatusCode.Ok).send({{name}}s);
+  } catch (error) {
+    logger.error(error);
+    return res.status(HttpStatusCode.InternalServerError).send(error);
+  }
+};
+
+export const get{{titleCase name}}Controller = async (req: Request, res: Response) => {
+  try {
+    const {{name}}Id = Number(req.params.id);
+    const {{name}} = await get{{titleCase name}}ById({{name}}Id);
+    if (!{{name}}) {
+      return res
+        .status(HttpStatusCode.NotFound)
+        .send({ message: 'Customer not found' });
+    }
+    return res.status(HttpStatusCode.Ok).send({{name}});
+  } catch (error) {
+    logger.error(error);
+    return res.status(HttpStatusCode.InternalServerError).send(error);
+  }
+};
+
+export const create{{titleCase name}}Controller = async (req: Request, res: Response) => {
+  try {
+    const {{name}}Data = req.body;
+    const {{name}} = await create{{titleCase name}}({{name}}Data);
+    return res.status(HttpStatusCode.Created).send({{name}});
+  } catch (error) {
+    logger.error(error);
+    return res.status(HttpStatusCode.InternalServerError).send(error);
+  }
+};
+
+export const update{{titleCase name}}Controller = async (req: Request, res: Response) => {
+  try {
+    const {{name}}Id = Number(req.params.id);
+    const {{name}}UpdateData = req.body;
+    const {{name}} = await update{{titleCase name}}ById({{name}}Id, {{name}}UpdateData);
+    return res.status(HttpStatusCode.Ok).send({{name}});
+  } catch (error) {
+    logger.error(error);
+    return res.status(HttpStatusCode.InternalServerError).send(error);
+  }
+};
+
+export const delete{{titleCase name}}Controller = async (req: Request, res: Response) => {
+  try {
+    const {{name}}Id = Number(req.params.id);
+    const response = await delete{{titleCase name}}ById({{name}}Id);
+    return res.status(HttpStatusCode.Ok).send(response);
+  } catch (error) {
+    logger.error(error);
+    return res.status(HttpStatusCode.InternalServerError).send(error);
+  }
+};

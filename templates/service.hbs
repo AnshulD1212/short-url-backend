@@ -1,0 +1,47 @@
+import { logger } from '../../../helpers/logger';
+import { {{titleCase name}} } from '../../types/{{name}}';
+
+export const get{{titleCase name}}s = async (): Promise<{{titleCase name}}[]> => {
+  try {
+    // TODO: Implement
+  } catch (err) {
+    logger.error(err);
+    throw err;
+  }
+};
+
+export const get{{titleCase name}}ById = async (id: number): Promise<{{titleCase name}}> => {
+  try {
+    // TODO: Implement
+  } catch (err) {
+    logger.error(err);
+    throw err;
+  }
+};
+
+export const create{{titleCase name}} = async (data: {{titleCase name}}Body ): Promise<{{titleCase name}}> => {
+  try {
+    // TODO: Implement
+  } catch (err) {
+    logger.error(err);
+    throw err;
+  }
+};
+
+export const update{{titleCase name}}ById = async (id: number, data: Partial<{{titleCase name}}Body>): Promise<{{titleCase name}}> => {
+  try {
+    // TODO: Implement
+  } catch (err) {
+    logger.error(err);
+    throw err;
+  }
+};
+
+export const delete{{titleCase name}}ById = async (id: number): Promise<string> => {
+  try {
+    // TODO: Implement
+  } catch (err) {
+    logger.error(err);
+    throw err;
+  }
+};

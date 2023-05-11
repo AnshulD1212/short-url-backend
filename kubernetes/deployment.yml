@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: creators-connect
+spec:
+  selector:
+    matchLabels:
+      app: creators-connect
+  template:
+    metadata:
+      labels:
+        app: creators-connect
+    spec:
+      containers:
+        - name: creators-connect-backend
+          image: anshuld12/creators-connect:base
+          resources:
+            limits:
+              memory: '1Gi'
+              cpu: '500m'
+          ports:
+            - containerPort: 4000
+          imagePullPolicy: Always
+          envFrom:
+            - configMapRef:
+                name: creators-connect-configmap

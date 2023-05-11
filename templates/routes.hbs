@@ -1,0 +1,19 @@
+import express from 'express';
+import { handleErrors } from '../../helpers/handleErrors';
+import {
+  get{{titleCase name}}Controller,
+  get{{titleCase name}}sController,
+  create{{titleCase name}}Controller,
+  update{{titleCase name}}Controller,
+  delete{{titleCase name}}Controller
+} from './controllers/{{name}}.controller';
+
+const router: express.Router = express.Router();
+
+router.get('/', handleErrors(get{{titleCase name}}sController));
+router.get('/:id', handleErrors(get{{titleCase name}}Controller));
+router.post('/', handleErrors(create{{titleCase name}}Controller));
+router.put('/:id', handleErrors(update{{titleCase name}}Controller));
+router.delete('/:id', handleErrors(delete{{titleCase name}}Controller));
+
+export const {{name}}Routes = router;
