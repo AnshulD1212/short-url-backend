@@ -1,19 +1,19 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: creators-connect
+  name: short-url
 spec:
   selector:
     matchLabels:
-      app: creators-connect
+      app: short-url
   template:
     metadata:
       labels:
-        app: creators-connect
+        app: short-url
     spec:
       containers:
-        - name: creators-connect-backend
-          image: anshuld12/creators-connect:base
+        - name: short-url-backend
+          image: anshuld12/short-url:base
           resources:
             limits:
               memory: '1Gi'
@@ -23,4 +23,4 @@ spec:
           imagePullPolicy: Always
           envFrom:
             - configMapRef:
-                name: creators-connect-configmap
+                name: short-url-configmap

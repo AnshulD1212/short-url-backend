@@ -1,9 +1,9 @@
 {
   "name": "node-backend",
   "version": "1.0.0",
-  "description": "backend for creator's connect in nodejs(typescript)",
+  "description": "backend for short url service",
   "main": "dist/index.js",
-  "repository": "git@github.com:creator-s-connect/node-backend.git",
+  "repository": "git@github.com:AnshulD1212/short-url-backend.git",
   "author": "anshuld1212 <anshul.dharmadhikari@live.com>",
   "license": "MIT",
   "scripts": {
