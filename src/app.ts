@@ -2,6 +2,9 @@ import express from 'express';
 import dotenv from 'dotenv';
 dotenv.config();
 import { HttpStatusCode } from 'axios';
+import { shortUrlRoutes } from './shortUrl/shortUrl.routes';
+import { redirectToOriginalUrlController } from './shortUrl/controller/shortUrl.controller';
+import { handleErrors } from './helpers/handleErrors';
 
 export const expressAPI = (): express.Application => {
   const api = express();
@@ -9,8 +12,11 @@ export const expressAPI = (): express.Application => {
   api.use(express.urlencoded({ extended: true }));
   // health check API
   api.get('/health', (req, res) => {
-    res.status(HttpStatusCode.Ok).send('OK');
+    res.status(HttpStatusCode.Ok).send({ message: 'OK' });
   });
+
+  api.use('/short-url', shortUrlRoutes);
+  api.get('/:shortUrl', handleErrors(redirectToOriginalUrlController));
 
   return api;
 };
