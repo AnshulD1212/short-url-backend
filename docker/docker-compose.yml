@@ -1,8 +1,0 @@
-version: '3'
-services:
-  backend:
-    container_name: short-url-backend
-    image: 'short-url-backend:1.0'
-    build: .
-    ports:
-      - '4000:4000'

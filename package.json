@@ -8,7 +8,8 @@
   "license": "MIT",
   "scripts": {
     "dev": "ts-node-dev src/index.ts | pino-pretty",
-    "start": "ts-node src/index.ts",
+    "build": "./node_modules/.bin/tsc",
+    "start": "ts-node dist/index.js",
     "test": "jest --detectOpenHandles",
     "test:watch": "jest --watch --collectCoverage=false --detectOpenHandles --unhandled-rejections=strict",
     "test:coverage": "yarn test --coverage",
@@ -36,7 +37,6 @@
     "redis-mock": "^0.56.3",
     "supertest": "^6.3.3",
     "ts-jest": "^29.0.5",
-    "ts-node": "^10.9.1",
     "ts-node-dev": "^2.0.0",
     "typescript": "^4.9.2"
   },
@@ -49,6 +49,7 @@
     "pg": "^8.10.0",
     "pino": "^8.11.0",
     "redis": "^4.6.6",
+    "ts-node": "^10.9.1",
     "typeorm": "^0.3.12",
     "typeorm-naming-strategies": "^4.1.0"
   }

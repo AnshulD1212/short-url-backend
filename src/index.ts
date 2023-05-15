@@ -10,7 +10,7 @@ const port = Number(process.env.PORT) || 4000;
 AppDataSource.initialize()
   .then(async () => {
     logger.info('Database connected successfully!');
-    redisClient.on('error', err => logger.error('Redis Client Error', err));
+    redisClient.on('error', err => logger.error(`Redis Client Error: ${err}`));
 
     await redisClient.connect();
     const lastShortUrl = await getLatestShortUrl();
@@ -24,5 +24,5 @@ AppDataSource.initialize()
     });
   })
   .catch(err => {
-    logger.error('Error during Database connection', err);
+    logger.error(`Error during Database connection: ${err}`);
   });

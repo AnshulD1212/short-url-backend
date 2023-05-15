@@ -1,0 +1,54 @@
+version: '3'
+services:
+  backend:
+    container_name: short-url-backend
+    build: .
+    ports:
+      - '4000:4000'
+    restart: on-failure
+    depends_on:
+      - migration
+      - redis
+    environment:
+      DATABASE_URL: postgres://postgres:postgres@postgres:5432/short_url?sslmode=disable
+      REDIS_URL: redis://redis:6379
+      NODE_ENV: development
+      PORT: 4000
+    networks:
+      - short-url-network
+  postgres:
+    container_name: short-url-postgres
+    image: 'postgres:15.3-alpine'
+    ports:
+      - '5432:5432'
+    environment:
+      POSTGRES_USER: 'postgres'
+      POSTGRES_PASSWORD: 'postgres'
+      POSTGRES_DB: 'short_url'
+    networks:
+      - short-url-network
+  redis:
+    container_name: short-url-redis
+    image: 'redis:latest'
+    ports:
+      - '6379:6379'
+    networks:
+      - short-url-network
+  migration:
+    build: .
+    command: ['yarn', 'run', 'migration:up']
+    links:
+      - postgres
+    depends_on:
+      - postgres
+    environment:
+      DATABASE_URL: postgres://postgres:postgres@postgres:5432/short_url?sslmode=disable
+    networks:
+      - short-url-network
+
+volumes:
+  redis:
+  redis-config:
+
+networks:
+  short-url-network:
