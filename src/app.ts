@@ -1,5 +1,6 @@
 import express from 'express';
 import dotenv from 'dotenv';
+import cors from 'cors';
 dotenv.config();
 import { HttpStatusCode } from 'axios';
 import { shortUrlRoutes } from './shortUrl/shortUrl.routes';
@@ -10,6 +11,7 @@ export const expressAPI = (): express.Application => {
   const api = express();
   api.use(express.json());
   api.use(express.urlencoded({ extended: true }));
+  api.use(cors());
   // health check API
   api.get('/health', (req, res) => {
     res.status(HttpStatusCode.Ok).send({ message: 'OK' });
